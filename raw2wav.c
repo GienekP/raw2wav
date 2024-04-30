@@ -146,9 +146,9 @@ void addFile(U8 *track, unsigned int *pos, const U8 *file, unsigned int size)
 	addRecord(track,pos,file,0);
 }
 /*--------------------------------------------------------------------*/
-void addXEX(U8 *track, unsigned int *pos, const U8 *xex, unsigned int size)
+void addRAW(U8 *track, unsigned int *pos, const U8 *raw, unsigned int size)
 {
-	addFile(track,pos,xex,size);
+	addFile(track,pos,raw,size);
 	addInterspace(track,pos);
 }
 /*--------------------------------------------------------------------*/
@@ -253,7 +253,7 @@ void buildList(int argc, char *argv[])
 	{
 		size=loadBIN(argv[1+i],buf,sizeof(buf));
 		printf("Scanning \"%s\" (%i bytes)\n",argv[1+i],size);
-		addXEX(track,&pos,buf,size);
+		addRAW(track,&pos,buf,size);
 	};
 	printf("Need %i pulses\n",pos);
 	track=(U8 *)malloc(sizeof(U8)*pos);
@@ -266,7 +266,7 @@ void buildList(int argc, char *argv[])
 			unsigned int lpos=pos;
 			size=loadBIN(argv[1+i],buf,sizeof(buf));
 			printf("Building \"%s\"\n",argv[1+i]);
-			addXEX(track,&pos,buf,size);
+			addRAW(track,&pos,buf,size);
 			printf("\"%s\" need %i seconds\n",argv[1+i],(pos-lpos)/BAUDS);
 		};	
 		saveWAV(argv[argc-1],track,pos);
