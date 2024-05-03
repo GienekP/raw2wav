@@ -105,9 +105,9 @@ void addGap(U8 *track, unsigned int *pos, U8 mode)
 	unsigned int i,ms,n;
 	switch (mode)
 	{
-		case 1: {ms=250;} break;
-		case 2: {ms=3000;} break;
-		case 3: {ms=20*1000;} break;		
+		case 1: {ms=GAPSHORT;} break;
+		case 2: {ms=GAPNORMAL;} break;
+		case 3: {ms=GAPLONG;} break;		
 		default: {ms=0;} break;
 	};
 	n=(ms*BAUDS)/1000;
